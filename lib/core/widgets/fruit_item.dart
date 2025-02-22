@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:user_fruit_app/core/entities/product_entity.dart';
 import 'package:user_fruit_app/core/utils/app_colors.dart';
 import 'package:user_fruit_app/core/utils/app_text_styles.dart';
 
 class FruitItem extends StatelessWidget {
-  const FruitItem({super.key});
-
+  const FruitItem({super.key, required this.productEntity});
+final ProductEntity productEntity;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,11 +29,14 @@ class FruitItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start, // Align items at the start
               children: [
                 const SizedBox(height: 20), // Adjust this as needed
-                Icon(Icons.add_ic_call_outlined),
+              
+              Image.network(productEntity.imageUrl!),
+              
+    
                 const SizedBox(height: 24),
                 ListTile(
                   title: Text(
-                    'name',
+                    productEntity.name,
                     textAlign: TextAlign.right,
                     style: TextStyles.semiBold16,
                   ),

@@ -1,14 +1,12 @@
 import 'dart:io';
-
 import 'package:user_fruit_app/core/entities/review_entity.dart';
 
-
-class ProductEntity {
+class ProductEntity   {
   final String name;
   final String code;
   final String description;
   final num price;
-  final File image;
+
   final bool isFeatured;
   String? imageUrl;
   final int expirationsMonths;
@@ -28,7 +26,9 @@ class ProductEntity {
       required this.numberOfCalories,
       required this.unitAmount,
       this.isOrganic = false,
-      required this.image,
       required this.isFeatured,
       this.imageUrl});
+
+  @override
+  List<Object?> get props => [code];
 }

@@ -1,6 +1,7 @@
 import 'dart:io';
-import 'dart:ui';
 import 'package:user_fruit_app/core/entities/product_entity.dart';
+
+import '../helper_functions/get_avg_rating.dart';
 import 'review_model.dart';
 
 class ProductModel {
@@ -8,14 +9,14 @@ class ProductModel {
   final String code;
   final String description;
   final num price;
-final File image;
+
   final bool isFeatured;
   final num sellingCount;
   String? imageUrl;
   final int expirationsMonths;
   final bool isOrganic;
   final int numberOfCalories;
-  final num avgRating=0;
+  final num avgRating;
   final num ratingCount = 0;
   final int unitAmount;
   final List<ReviewModel> reviews;
@@ -25,17 +26,21 @@ final File image;
       required this.description,
       required this.expirationsMonths,
       required this.numberOfCalories,
+      required this.avgRating,
       required this.unitAmount,
       required this.sellingCount,
       required this.reviews,
       required this.price,
       required this.isOrganic,
       required this.isFeatured,
-      required this.image, 
       this.imageUrl});
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
+      avgRating: getAvgRating(json['reviews'] != null
+          ? List<ReviewModel>.from(
+              json['reviews'].map((e) => ReviewModel.fromJson(e)))
+          : []),
       name: json['name'],
       code: json['code'],
       description: json['description'],
@@ -51,10 +56,8 @@ final File image;
       isOrganic: json['isOrganic'],
       isFeatured: json['isFeatured'],
       imageUrl: json['imageUrl'],
-      image: File(json['image']),
     );
   }
-
 
   ProductEntity toEntity() {
     return ProductEntity(
@@ -68,11 +71,8 @@ final File image;
         unitAmount: unitAmount,
         isOrganic: isOrganic,
         isFeatured: isFeatured,
-        imageUrl: imageUrl, image: image,
-        
-         );
+        imageUrl: imageUrl);
   }
-
 
   toJson() {
     return {

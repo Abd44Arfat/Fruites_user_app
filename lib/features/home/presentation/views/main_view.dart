@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:user_fruit_app/features/home/presentation/widgets/custom_bottom_navigation.dart';
 import 'package:user_fruit_app/features/home/presentation/widgets/home_view_body.dart';
+import 'package:user_fruit_app/features/home/presentation/widgets/homeview.dart';
 
 
-class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+class MainView extends StatelessWidget {
+  const MainView({super.key});
   static const routeName = '/home-view';
 
   @override
@@ -13,10 +14,9 @@ class HomeView extends StatelessWidget {
 
       bottomNavigationBar: const CustomBottomNavigationBar(),
       body: SafeArea(
-        // Wrap HomeViewBody in Directionality
         child: Directionality(
           textDirection: TextDirection.rtl, // Use TextDirection.ltr for left-to-right
-          child: const HomeViewBody(),
+          child: const Homeview(),
         ),
       ),
     );
