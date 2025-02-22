@@ -1,6 +1,6 @@
 import 'dart:io';
-
-import '../../domain/entities/product_entity.dart';
+import 'dart:ui';
+import 'package:user_fruit_app/core/entities/product_entity.dart';
 import 'review_model.dart';
 
 class ProductModel {
@@ -8,16 +8,16 @@ class ProductModel {
   final String code;
   final String description;
   final num price;
-  final File image;
+final File image;
   final bool isFeatured;
+  final num sellingCount;
   String? imageUrl;
   final int expirationsMonths;
   final bool isOrganic;
   final int numberOfCalories;
-  final num avgRating = 0;
+  final num avgRating=0;
   final num ratingCount = 0;
   final int unitAmount;
-  final int sellingCount;
   final List<ReviewModel> reviews;
   ProductModel(
       {required this.name,
@@ -26,37 +26,58 @@ class ProductModel {
       required this.expirationsMonths,
       required this.numberOfCalories,
       required this.unitAmount,
+      required this.sellingCount,
       required this.reviews,
       required this.price,
-      this.sellingCount = 0,
       required this.isOrganic,
-      required this.image,
       required this.isFeatured,
+      required this.image, 
       this.imageUrl});
 
-  factory ProductModel.fromEntity(ProductEntity addProductInputEntity) {
+  factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
-        reviews: addProductInputEntity.reviews
-            .map((e) => ReviewModel.fromEntity(e))
-            .toList(),
-        name: addProductInputEntity.name,
-        code: addProductInputEntity.code,
-        description: addProductInputEntity.description,
-        price: addProductInputEntity.price,
-        isOrganic: addProductInputEntity.isOrganic,
-        image: addProductInputEntity.image,
-        expirationsMonths: addProductInputEntity.expirationsMonths,
-        numberOfCalories: addProductInputEntity.numberOfCalories,
-        unitAmount: addProductInputEntity.unitAmount,
-        isFeatured: addProductInputEntity.isFeatured,
-        imageUrl: addProductInputEntity.imageUrl);
+      name: json['name'],
+      code: json['code'],
+      description: json['description'],
+      expirationsMonths: json['expirationsMonths'],
+      numberOfCalories: json['numberOfCalories'],
+      unitAmount: json['unitAmount'],
+      sellingCount: json['sellingCount'],
+      reviews: json['reviews'] != null
+          ? List<ReviewModel>.from(
+              json['reviews'].map((e) => ReviewModel.fromJson(e)))
+          : [],
+      price: json['price'],
+      isOrganic: json['isOrganic'],
+      isFeatured: json['isFeatured'],
+      imageUrl: json['imageUrl'],
+      image: File(json['image']),
+    );
   }
+
+
+  ProductEntity toEntity() {
+    return ProductEntity(
+        name: name,
+        code: code,
+        description: description,
+        price: price,
+        reviews: reviews.map((e) => e.toEntity()).toList(),
+        expirationsMonths: expirationsMonths,
+        numberOfCalories: numberOfCalories,
+        unitAmount: unitAmount,
+        isOrganic: isOrganic,
+        isFeatured: isFeatured,
+        imageUrl: imageUrl, image: image,
+        
+         );
+  }
+
 
   toJson() {
     return {
       'name': name,
       'code': code,
-      'sellingCount': sellingCount,
       'description': description,
       'price': price,
       'isFeatured': isFeatured,

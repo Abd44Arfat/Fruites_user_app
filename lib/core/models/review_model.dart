@@ -1,4 +1,5 @@
-import '../../domain/entities/review_entity.dart';
+
+import 'package:user_fruit_app/core/entities/review_entity.dart';
 
 class ReviewModel {
   final String name;
@@ -30,6 +31,14 @@ class ReviewModel {
         ratting: json['ratting'],
         date: json['date'],
         reviewDescription: json['reviewDescription']);
+  }
+ ReviewEntity toEntity(){
+return ReviewEntity(date: date,image: image,ratting: ratting,name: name,reviewDescription: reviewDescription
+
+);
+
+
+
   }
   toJson() {
     return {
