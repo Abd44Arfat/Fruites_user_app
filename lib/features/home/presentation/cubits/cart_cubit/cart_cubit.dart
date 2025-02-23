@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:user_fruit_app/core/entities/product_entity.dart';
 import 'package:user_fruit_app/features/home/domain/entites/cart_entity.dart';
+import 'package:user_fruit_app/features/home/domain/entites/cart_item_entity.dart';
 
 part 'cart_state.dart';
 
@@ -22,7 +23,9 @@ emit(CartProductAdded());
 }
 
 
-
+void deleteCartItem(CartItemEntity cartItem) {
+cartEntity.removeCartItem(cartItem);
+emit(CartProductRemoved());
 
 }
-
+}

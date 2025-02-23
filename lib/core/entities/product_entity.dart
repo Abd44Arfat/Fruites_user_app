@@ -1,7 +1,8 @@
 import 'dart:io';
+import 'package:equatable/equatable.dart';
 import 'package:user_fruit_app/core/entities/review_entity.dart';
 
-class ProductEntity   {
+class ProductEntity  extends Equatable {
   final String name;
   final String code;
   final String description;

@@ -11,7 +11,7 @@ final List<CartItemEntity>cartItems;
       separatorBuilder: (context, index) => CustomDivider(),
       
       itemCount: cartItems.length,itemBuilder: (context, index) {
-      return CartItem(cartItemEntity: cartItems[index],);
+      return CartItem(carItemEntity: cartItems[index]);
     },);
   }
 }

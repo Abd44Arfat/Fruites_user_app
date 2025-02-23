@@ -15,7 +15,11 @@ totalPrice+=cartItem.calculateTotalPrice();
 return totalPrice;
 
 }
+removeCartItem(CartItemEntity cartItem ){
 
+cartItems.remove(cartItem);
+
+}
 
 
 addCartItem(CartItemEntity cartItemEntity){
