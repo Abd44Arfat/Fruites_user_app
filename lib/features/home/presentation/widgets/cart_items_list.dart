@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:user_fruit_app/features/home/domain/entites/cart_item_entity.dart';
 import 'package:user_fruit_app/features/home/presentation/widgets/cart_item.dart';
 
 class CartItemsList extends StatelessWidget {
-  const CartItemsList({super.key});
-
+  const CartItemsList({super.key, required this.cartItems});
+final List<CartItemEntity>cartItems;
   @override
   Widget build(BuildContext context) {
     return  SliverList.separated(
       separatorBuilder: (context, index) => CustomDivider(),
       
-      itemCount: 10,itemBuilder: (context, index) {
-      return CartItem();
+      itemCount: cartItems.length,itemBuilder: (context, index) {
+      return CartItem(cartItemEntity: cartItems[index],);
     },);
   }
 }

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user_fruit_app/core/entities/product_entity.dart';
 import 'package:user_fruit_app/core/utils/app_colors.dart';
 import 'package:user_fruit_app/core/utils/app_text_styles.dart';
 import 'package:user_fruit_app/core/widgets/custom_network_image.dart';
+import 'package:user_fruit_app/features/home/presentation/cubits/cart_cubit/cart_cubit.dart';
 
 class FruitItem extends StatelessWidget {
   const FruitItem({super.key, required this.productEntity});
-final ProductEntity productEntity;
+  final ProductEntity productEntity;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,19 +29,19 @@ final ProductEntity productEntity;
           ),
           Positioned.fill(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start, // Align items at the start
+              mainAxisAlignment:
+                  MainAxisAlignment.start, // Align items at the start
               children: [
                 const SizedBox(height: 20), // Adjust this as needed
-              
-           productEntity.imageUrl !=null ? Flexible(child: CustomNetworkImage(imageUrl: productEntity.imageUrl!))
-           :Container(
-            color: Colors.grey,
 
+                productEntity.imageUrl != null
+                    ? Flexible(
+                      child: CustomNetworkImage(
+                        imageUrl: productEntity.imageUrl!,
+                      ),
+                    )
+                    : Container(color: Colors.grey, height: 100, width: 100),
 
-            height: 100,
-            width: 100,
-           ),
-              
                 const SizedBox(height: 24),
                 ListTile(
                   title: Text(
@@ -79,13 +81,14 @@ final ProductEntity productEntity;
                     textAlign: TextAlign.right,
                   ),
                   trailing: GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+
+context.read<CartCubit>().addProduct(productEntity);
+
+                    },
                     child: const CircleAvatar(
                       backgroundColor: AppColors.primaryColor,
-                      child: Icon(
-                        Icons.add,
-                        color: Colors.white,
-                      ),
+                      child: Icon(Icons.add, color: Colors.white),
                     ),
                   ),
                 ),
@@ -97,4 +100,3 @@ final ProductEntity productEntity;
     );
   }
 }
-

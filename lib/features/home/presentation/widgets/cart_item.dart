@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:user_fruit_app/core/utils/app_colors.dart';
 import 'package:user_fruit_app/core/widgets/custom_network_image.dart';
+import 'package:user_fruit_app/features/home/domain/entites/cart_item_entity.dart';
 import 'package:user_fruit_app/features/home/presentation/widgets/cart_item_action_btn.dart';
 
 
@@ -12,8 +13,8 @@ import '../../../../../core/utils/app_images.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 
 class CartItem extends StatelessWidget {
-  const CartItem({super.key, });
-
+  const CartItem({super.key, required this.cartItemEntity, });
+final CartItemEntity cartItemEntity;
   @override
   Widget build(BuildContext context) {
    
@@ -28,7 +29,7 @@ class CartItem extends StatelessWidget {
                   height: 92,
                   decoration: const BoxDecoration(color: Color(0xFFF3F5F7)),
                   child: CustomNetworkImage(
-                    imageUrl: '',
+                    imageUrl: cartItemEntity.productEntity.imageUrl!,
                   ),
                 ),
                 const SizedBox(
@@ -42,7 +43,7 @@ class CartItem extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                       'mango',
+                       cartItemEntity.productEntity.name,
                             style: TextStyles.bold13,
                           ),
                           const Spacer(),
@@ -57,7 +58,7 @@ class CartItem extends StatelessWidget {
                         ],
                       ),
                       Text(
-                        ' كم',
+                        ' ${cartItemEntity.calculateTotalWeight()}كم',
                         textAlign: TextAlign.right,
                         style: TextStyles.regular13.copyWith(
                           color: AppColors.secondaryColor,
@@ -70,7 +71,7 @@ class CartItem extends StatelessWidget {
                           ),
                           const Spacer(),
                           Text(
-                            'جنيه ',
+                            '${cartItemEntity.calculateTotalPrice()}جنيه ',
                             style: TextStyles.bold16
                                 .copyWith(color: AppColors.secondaryColor),
                           )
@@ -83,7 +84,5 @@ class CartItem extends StatelessWidget {
             ),
           ),
         );
-      
-    
   }
 }

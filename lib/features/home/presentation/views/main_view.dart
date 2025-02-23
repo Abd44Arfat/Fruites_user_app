@@ -1,41 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:user_fruit_app/features/home/presentation/views/cart_view.dart';
-import 'package:user_fruit_app/features/home/presentation/views/products_view.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:user_fruit_app/features/home/presentation/cubits/cart_cubit/cart_cubit.dart';
 import 'package:user_fruit_app/features/home/presentation/widgets/custom_bottom_navigation.dart';
-import 'package:user_fruit_app/features/home/presentation/views/homeview.dart';
+import 'package:user_fruit_app/features/home/presentation/widgets/main_view_body_bloc_consumer.dart';
+
 
 class MainView extends StatefulWidget {
   const MainView({super.key});
-  static const routeName = '/home-view';
+
+  static const routeName = 'home_view';
 
   @override
   State<MainView> createState() => _MainViewState();
 }
 
 class _MainViewState extends State<MainView> {
-  int currentViewIndex = 0; // Remove 'final' to make it mutable
-
+  int currentViewIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: CustomBottomNavigationBar(
-        onItemTapped: (index) {
-          // Update the currentViewIndex and trigger a rebuild
-         
+    return BlocProvider(
+      create: (context) => CartCubit(),
+      child: Scaffold(
+        bottomNavigationBar: CustomBottomNavigationBar(
+          onItemTapped: (index) {
             currentViewIndex = index;
-       setState(() {
 
-       });
-        },
-      ),
-      body: SafeArea(
-        child: Directionality(
-          textDirection: TextDirection.rtl, // Use TextDirection.ltr for left-to-right
-          child:CartView()), // Replace(),
-
-// IndexedStack(index: currentViewIndex, children: const [Homeview(), ProductsView(),CartView()]),
-
-        
+            setState(() {});
+          },
+        ),
+        body: SafeArea(
+          child: Directionality(
+             textDirection: TextDirection.rtl,
+            child: MainViewBodyBlocConsumer(currentViewIndex: currentViewIndex)),
+        ),
       ),
     );
   }

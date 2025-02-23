@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user_fruit_app/core/widgets/custom_button.dart';
+import 'package:user_fruit_app/features/home/presentation/cubits/cart_cubit/cart_cubit.dart';
 import 'package:user_fruit_app/features/home/presentation/widgets/cart_header.dart';
 import 'package:user_fruit_app/features/home/presentation/widgets/cart_items_list.dart';
 import '../../../../../core/widgets/custom_app_bar.dart';
@@ -35,14 +37,18 @@ class CartViewBody extends StatelessWidget {
             SliverToBoxAdapter(
          
                 
-              child:    CustomDivider(),
+              child:  context.read<CartCubit>().cartEntity.cartItems.isEmpty
+                  ? const SizedBox()
+                  : const CustomDivider(),
             ),
             CartItemsList(
-         
+         cartItems: [],
             ),
             SliverToBoxAdapter(
          
-                   child:  CustomDivider(),
+                   child: context.read<CartCubit>().cartEntity.cartItems.isEmpty
+                  ? const SizedBox()
+                  : const CustomDivider(),
             ),
           ],
         ),
@@ -50,7 +56,7 @@ class CartViewBody extends StatelessWidget {
           left: 16,
           right: 16,
           bottom: MediaQuery.sizeOf(context).height * .07,
-          child:  CustomButton(onPressed: () {  }, text: 'الدفع 120 جنيه',),
+          child:  CustomButton(onPressed: () {  }, text: 'الدفع ${context.watch<CartCubit>().cartEntity.calculateTotalPrice()} جنيه',),
         )
       ],
     );
