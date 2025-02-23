@@ -22,6 +22,10 @@ class Assets {
   /// assets/images/Ellipse 224.svg
   static const String imagesEllipse224 = "assets/images/Ellipse 224.svg";
 
+  /// Assets for imagesFilter2
+  /// assets/images/filter2.svg
+  static const String imagesFilter2 = "assets/images/filter2.svg";
+
   /// Assets for imagesImagePeofile
   /// assets/images/image_peofile.png
   static const String imagesImagePeofile = "assets/images/image_peofile.png";
@@ -48,7 +52,10 @@ class Assets {
 
   /// Assets for imagesSocial Icons
   /// assets/images/Social Icons.svg
-  static const String imagesSocialIcons = "assets/images/Social Icons.svg";
+
+  /// Assets for imagesSocialIcons
+  /// assets/images/SocialIcons.svg
+  static const String imagesSocialIcons = "assets/images/SocialIcons.svg";
 
   /// Assets for imagesSplashBottom
   /// assets/images/splash_bottom.svg
@@ -61,6 +68,10 @@ class Assets {
   /// Assets for imagesSplashTop
   /// assets/images/splash_top.svg
   static const String imagesSplashTop = "assets/images/splash_top.svg";
+
+  /// Assets for imagesTrash
+  /// assets/images/trash.svg
+  static const String imagesTrash = "assets/images/trash.svg";
 
   /// Assets for imagesVector
   /// assets/images/Vector.svg

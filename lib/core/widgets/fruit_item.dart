@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:user_fruit_app/core/entities/product_entity.dart';
 import 'package:user_fruit_app/core/utils/app_colors.dart';
 import 'package:user_fruit_app/core/utils/app_text_styles.dart';
+import 'package:user_fruit_app/core/widgets/custom_network_image.dart';
 
 class FruitItem extends StatelessWidget {
   const FruitItem({super.key, required this.productEntity});
@@ -30,9 +31,15 @@ final ProductEntity productEntity;
               children: [
                 const SizedBox(height: 20), // Adjust this as needed
               
-              Image.network(productEntity.imageUrl!),
+           productEntity.imageUrl !=null ? Flexible(child: CustomNetworkImage(imageUrl: productEntity.imageUrl!))
+           :Container(
+            color: Colors.grey,
+
+
+            height: 100,
+            width: 100,
+           ),
               
-    
                 const SizedBox(height: 24),
                 ListTile(
                   title: Text(
@@ -90,3 +97,4 @@ final ProductEntity productEntity;
     );
   }
 }
+

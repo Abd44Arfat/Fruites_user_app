@@ -1,28 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user_fruit_app/core/cubits/cubit/product_cubit.dart';
-import 'package:user_fruit_app/core/widgets/products_gridview.dart';
+import 'package:user_fruit_app/core/widgets/custom_app_bar.dart';
 import 'package:user_fruit_app/core/widgets/search_text_fireld.dart';
 import 'package:user_fruit_app/features/home/presentation/widgets/Products_gridview_blocbulder.dart';
-import 'package:user_fruit_app/features/home/presentation/widgets/best_selling_header.dart';
-import 'package:user_fruit_app/features/home/presentation/widgets/custom_home_app_bar.dart';
-import 'package:user_fruit_app/features/home/presentation/widgets/featured_list.dart';
+import 'package:user_fruit_app/features/home/presentation/widgets/products_header.dart';
 
-
-class HomeViewBody extends StatefulWidget {
-  const HomeViewBody({super.key});
+class ProductsViewBody extends StatefulWidget {
+  const ProductsViewBody({super.key});
 
   @override
-  State<HomeViewBody> createState() => _HomeViewBodyState();
+  State<ProductsViewBody> createState() => _ProductsViewBodyState();
 }
-class _HomeViewBodyState extends State<HomeViewBody> {
+
+class _ProductsViewBodyState extends State<ProductsViewBody> {
   @override
 
+  
 initState() {
-context.read<ProductCubit>().getBestSellingProducts();
+context.read<ProductCubit>().getProducts();
     super.initState();
   }
-
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -32,23 +30,17 @@ context.read<ProductCubit>().getBestSellingProducts();
       
         SliverToBoxAdapter(child: Column(
       children: [
-        const CustomHomeAppBar(),
+
+buildAppBar(context,title: 'المنتجات',showBackButton: false),
+
         SizedBox(
           height: 16,
         ),
         const SearchTextField(),
         SizedBox(
           height: 12,
-        ),
-
-   const FeaturedList(),
-      SizedBox(
-          height: 12,
-        ),
-        const BestSellingHeader(),
- SizedBox(
-          height: 12,
-        ),    
+        ),   
+        ProductsHeader(productsLength: context.read<ProductCubit>().productsLength)
       ],
         ),
         ),
@@ -57,6 +49,4 @@ context.read<ProductCubit>().getBestSellingProducts();
 
       ),
     );
-  }
-}
-
+  }}

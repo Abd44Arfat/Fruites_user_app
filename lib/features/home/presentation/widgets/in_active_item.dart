@@ -9,7 +9,10 @@ class InActiveItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.transparent,
-      child: SvgPicture.asset(image),
+      child: Container(
+        
+        color: Colors.transparent,
+        child: SvgPicture.asset(image)),
     );
   }
 }
