@@ -1,13 +1,40 @@
 import 'package:user_fruit_app/features/checkout/domain/entities/shipping_address_entity.dart';
 import 'package:user_fruit_app/features/home/domain/entites/cart_entity.dart';
-import 'package:user_fruit_app/features/home/domain/entites/cart_item_entity.dart';
 
-class OrderEntity {
-final CartEntity cartEntity;
- bool? payWithCash;
-final ShippingAddressEntity? shippingAddressEntity;
+class OrderInputEntity {
+  final String uID;
+  final CartEntity cartEntity;
+  bool? payWithCash;
+  ShippingAddressEntity shippingAddressEntity;
+  OrderInputEntity(
+    this.cartEntity, {
+    this.payWithCash,
+    required this.shippingAddressEntity,
+    required this.uID,
+  });
 
-  OrderEntity(this.cartEntity,{ this.payWithCash, this.shippingAddressEntity});
+  double calculateShippingCost() {
+    if (payWithCash!) {
+      return 30;
+    } else {
+      return 0;
+    }
+  }
+
+  double calcualteShippingDiscount() {
+    return 0;
+  }
+
+  double calculateTotalPriceAfterDiscountAndShipping() {
+    return cartEntity.calculateTotalPrice() +
+        calculateShippingCost() -
+        calcualteShippingDiscount();
+  }
+
+  @override
+  String toString() {
+    return 'OrderEntity{uID: $uID, cartEntity: $cartEntity, payWithCash: $payWithCash, shippingAddressEntity: $shippingAddressEntity}';
+  }
 
 
 

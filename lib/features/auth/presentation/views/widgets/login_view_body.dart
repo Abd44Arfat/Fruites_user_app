@@ -29,7 +29,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
   @override
   Widget build(BuildContext context) {
     return  Padding(
-      padding: const EdgeInsets.symmetric(horizontal: KHorizontalPadding),
+      padding:  EdgeInsets.symmetric(horizontal: kHorizintalPadding),
       child: SingleChildScrollView(
       
       child:   Form(
@@ -43,7 +43,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
           },
           hintText: 'البريد الإلكتروني', textInputType: TextInputType.emailAddress,),
         
-        const SizedBox(height: KHorizontalPadding,),
+        const SizedBox(height: kHorizintalPadding,),
                PasswordField(
               onSaved: (value) {
             password=value!;

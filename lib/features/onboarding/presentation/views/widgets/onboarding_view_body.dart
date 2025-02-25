@@ -53,9 +53,9 @@ Visibility(
   maintainSize: true,
   maintainState: true,
   child: Padding(
-    padding: const EdgeInsets.symmetric(horizontal: KHorizontalPadding),
+    padding: const EdgeInsets.symmetric(horizontal: kHorizintalPadding),
     child: CustomButton(onPressed: (){
-      Prefs.setBool(KIsOnBoardingViewSeen, true);
+      Prefs.setBool(kIsOnBoardingViewSeen, true);
       Navigator.of(context).pushReplacementNamed(LoginView.routeName);}, 
       text: "ابدأ الان"),
   ),

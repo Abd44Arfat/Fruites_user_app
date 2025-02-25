@@ -44,7 +44,7 @@ SizedBox(
           visible: isVisible,
           child: GestureDetector(
           onTap:(){ 
-               Prefs.setBool(KIsOnBoardingViewSeen, true);
+               Prefs.setBool(kIsOnBoardingViewSeen, true);
             Navigator.of(context).pushReplacementNamed(LoginView.routeName);},
             
             child: const Text('تخط',style: TextStyles.regular13))),

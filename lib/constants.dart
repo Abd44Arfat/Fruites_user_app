@@ -1,2 +1,4 @@
-const KHorizontalPadding = 16.0;
-const KIsOnBoardingViewSeen ="isOnBoardingViewSeen";
+const kHorizintalPadding = 16.0;
+const kTopPaddding = 16.0;
+const kIsOnBoardingViewSeen = 'isOnBoardingViewSeen';
+const kUserData = 'userData';

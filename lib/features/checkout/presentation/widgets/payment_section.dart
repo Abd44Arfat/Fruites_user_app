@@ -1,29 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:user_fruit_app/features/checkout/presentation/widgets/order_summery_widget.dart';
-import 'package:user_fruit_app/features/checkout/presentation/widgets/payment_item.dart';
-import 'package:user_fruit_app/features/checkout/presentation/widgets/shipping_Address_widget.dart' show ShippingAddressWidget;
+
+import 'shipping_address_widget.dart';
 
 class PaymentSection extends StatelessWidget {
-  const PaymentSection({super.key});
+  const PaymentSection({super.key, required this.pageController});
 
+  final PageController pageController;
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-
-children: [
-SizedBox(height: 24,),
-OrderSummryWidget(),
-
-  const SizedBox(
+    return Column(
+      children: [
+        const SizedBox(
+          height: 24,
+        ),
+        const OrderSummryWidget(),
+        const SizedBox(
           height: 16,
         ),
-        // ShippingAddressWidget(
-        
-        // ),
-
-],
-
+        ShippingAddressWidget(
+          pageController: pageController,
+        ),
+      ],
     );
   }
 }

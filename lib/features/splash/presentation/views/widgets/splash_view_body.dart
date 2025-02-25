@@ -50,7 +50,7 @@ fit: BoxFit.fill,
 
 
 void excuteNavigation() {
-bool isOnBoardingViewSeen= Prefs.getBool(KIsOnBoardingViewSeen);
+bool isOnBoardingViewSeen= Prefs.getBool(kIsOnBoardingViewSeen);
   Future.delayed(const Duration(seconds: 3),(){
 
 if (isOnBoardingViewSeen) {
