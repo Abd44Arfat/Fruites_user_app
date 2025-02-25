@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:user_fruit_app/core/helper_functions/build_error_bar.dart';
 import 'package:user_fruit_app/core/widgets/custom_button.dart';
 import 'package:user_fruit_app/features/checkout/presentation/views/checkout_view.dart';
 import 'package:user_fruit_app/features/home/presentation/cubits/cartItem/cart_item_cubit.dart';
@@ -64,10 +65,18 @@ class CustomCartBtn extends StatelessWidget {
       builder: (context, state) {
         return CustomButton(
           onPressed: () {
-Navigator.pushNamed(context, CheckoutView.routeName);
 
 
 
+    if (context.read<CartCubit>().cartEntity.cartItems.isNotEmpty) {
+              Navigator.pushNamed(
+                context,
+                CheckoutView.routeName,
+                arguments: context.read<CartCubit>().cartEntity,
+              );
+            } else {
+              buildErrorBar(context, 'لا يوجد منتجات في السلة');
+            }
           },
           text:
               'الدفع ${context.watch<CartCubit>().cartEntity.calculateTotalPrice()} جنيه',

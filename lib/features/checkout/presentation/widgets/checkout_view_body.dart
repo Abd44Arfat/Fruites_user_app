@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:user_fruit_app/core/helper_functions/build_error_bar.dart';
 import 'package:user_fruit_app/core/widgets/custom_button.dart';
+import 'package:user_fruit_app/features/checkout/domain/entities/order_entity.dart';
 import 'package:user_fruit_app/features/checkout/presentation/widgets/checkout_steps.dart';
 import 'package:user_fruit_app/features/checkout/presentation/widgets/checkout_steps_page_view.dart';
 
@@ -17,6 +20,12 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   void initState() {
     super.initState();
     pageController = PageController();
+    pageController.addListener((){
+      setState(() {
+      currentPageIndex = pageController.page!.round();
+    });
+    });
+  super.initState();
   }
 
   @override
@@ -25,6 +34,9 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
     super.dispose();
   }
 
+
+  int currentPageIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -32,17 +44,23 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
       child: Column(
         children: [
                SizedBox(height: 20),
-          CheckoutSteps(),
+          CheckoutSteps(
+            
+            currentPageIndex: currentPageIndex, pageController: pageController),
           SizedBox(height: 20),
           Expanded(
             child: CheckoutStepsPageView(pageController: pageController),
           ),
           CustomButton(
             onPressed: () {
-              print("Button pressed!"); // Debugging line
-              pageController.nextPage(duration: Duration(milliseconds: 300), curve: Curves.easeIn);
+              if (context.read<OrderEntity>().payWithCash!=null) {
+  pageController.animateToPage(currentPageIndex + 1,duration: Duration(milliseconds: 300), curve: Curves.easeIn);
+}else{
+buildErrorBar(context,' يرجي تحديد طريقه الدفع');
+
+}
             },
-            text: 'التالي',
+            text: getNextButtonText(currentPageIndex),
           ),
           SizedBox(height: 20),
         ],
@@ -50,3 +68,16 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
     );
   }
 }
+
+  String getNextButtonText(int currentPageIndex) {
+    switch (currentPageIndex) {
+      case 0:
+        return 'التالي';
+      case 1:
+        return 'التالي';
+      case 2:
+        return 'الدفع عبر PayPal';
+      default:
+        return 'التالي';
+    }
+  }

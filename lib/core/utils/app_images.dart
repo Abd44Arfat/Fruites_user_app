@@ -18,6 +18,10 @@ class Assets {
   /// assets/images/Coconut cut.png
   static const String imagesCoconutcut = "assets/images/Coconut cut.png";
 
+  /// Assets for imagesEdit
+  /// assets/images/edit.svg
+  static const String imagesEdit = "assets/images/edit.svg";
+
   /// Assets for imagesEllipse 224
   /// assets/images/Ellipse 224.svg
   static const String imagesEllipse224 = "assets/images/Ellipse 224.svg";
@@ -29,6 +33,10 @@ class Assets {
   /// Assets for imagesImagePeofile
   /// assets/images/image_peofile.png
   static const String imagesImagePeofile = "assets/images/image_peofile.png";
+
+  /// Assets for imagesLocation
+  /// assets/images/location.svg
+  static const String imagesLocation = "assets/images/location.svg";
 
   /// Assets for imagesNotification
   /// assets/images/notification.svg

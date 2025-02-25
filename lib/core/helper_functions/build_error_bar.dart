@@ -2,7 +2,12 @@
 
 void buildErrorBar(BuildContext context, String message) {
      ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(content: Text(message))
+      
+    SnackBar(
+      behavior: SnackBarBehavior.floating,
+      duration: const Duration(seconds: 1),
+      
+      content: Text(message))
     
     );
   }
