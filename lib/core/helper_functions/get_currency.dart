@@ -1,4 +1,4 @@
   String getCurrency(){
-return 'EGP';
+return 'USD';
 
   }

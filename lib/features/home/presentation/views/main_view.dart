@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user_fruit_app/features/home/presentation/cubits/cart_cubit/cart_cubit.dart';
-import 'package:user_fruit_app/features/home/presentation/widgets/custom_bottom_navigation.dart';
-import 'package:user_fruit_app/features/home/presentation/widgets/main_view_body_bloc_consumer.dart';
+import 'package:user_fruit_app/features/home/presentation/views/widgets/custom_bottom_navigation_bar.dart';
 
+
+import 'widgets/home_view.dart';
+import 'widgets/main_view_body.dart';
+import 'widgets/main_view_body_bloc_consumer.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key});
@@ -29,9 +32,7 @@ class _MainViewState extends State<MainView> {
           },
         ),
         body: SafeArea(
-          child: Directionality(
-             textDirection: TextDirection.rtl,
-            child: MainViewBodyBlocConsumer(currentViewIndex: currentViewIndex)),
+          child: MainViewBodyBlocConsumer(currentViewIndex: currentViewIndex),
         ),
       ),
     );

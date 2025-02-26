@@ -1,11 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:user_fruit_app/features/auth/presentation/views/login_view.dart';
 import 'package:user_fruit_app/features/auth/presentation/views/sign_up_view.dart';
 import 'package:user_fruit_app/features/best_selling_fruits/presentation/views/best_selling_view.dart';
 import 'package:user_fruit_app/features/checkout/presentation/views/checkout_view.dart';
 import 'package:user_fruit_app/features/home/domain/entites/cart_entity.dart';
-import 'package:user_fruit_app/features/home/domain/entites/cart_item_entity.dart';
 import 'package:user_fruit_app/features/home/presentation/views/main_view.dart';
 import 'package:user_fruit_app/features/onboarding/presentation/views/onboarding_view.dart';
 import 'package:user_fruit_app/features/splash/presentation/views/splash_view.dart';

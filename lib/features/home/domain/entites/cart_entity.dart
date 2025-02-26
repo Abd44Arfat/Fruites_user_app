@@ -1,51 +1,43 @@
+
 import 'package:user_fruit_app/core/entities/product_entity.dart';
-import 'package:user_fruit_app/features/home/domain/entites/cart_item_entity.dart';
+import 'package:user_fruit_app/features/home/domain/entites/car_item_entity.dart';
 
 class CartEntity {
-final List<CartItemEntity>cartItems;
+  final List<CartItemEntity> cartItems;
 
-  CartEntity( this.cartItems);
+  CartEntity(this.cartItems);
 
-
-double calculateTotalPrice(){
-double totalPrice=0;
-for(var cartItem in cartItems){
-totalPrice+=cartItem.calculateTotalPrice();  
-}
-return totalPrice;
-
-}
-removeCartItem(CartItemEntity cartItem ){
-
-cartItems.remove(cartItem);
-
-}
-
-
-addCartItem(CartItemEntity cartItemEntity){
-
-cartItems.add(cartItemEntity);
-}
-
-
-bool isExist(ProductEntity product){
-for(var cartItem in cartItems){
-  if(cartItem.productEntity==product){
-return true;
+  addCartItem(CartItemEntity cartItemEntity) {
+    cartItems.add(cartItemEntity);
   }
-}
-return false;
-}
 
-//increase on a same cart 
-CartItemEntity getCartItem(ProductEntity product){
-for(var cartItem in cartItems){
-  if(cartItem.productEntity==product){
-return cartItem;
-
+  removeCarItem(CartItemEntity carItem) {
+    cartItems.remove(carItem);
   }
-}
-return CartItemEntity(productEntity: product,quantity: 1);
 
-}
+  double calculateTotalPrice() {
+    double totalPrice = 0;
+    for (var carItem in cartItems) {
+      totalPrice += carItem.calculateTotalPrice();
+    }
+    return totalPrice;
+  }
+
+  bool isExis(ProductEntity product) {
+    for (var carItem in cartItems) {
+      if (carItem.productEntity == product) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  CartItemEntity getCarItem(ProductEntity product) {
+    for (var carItem in cartItems) {
+      if (carItem.productEntity == product) {
+        return carItem;
+      }
+    }
+    return CartItemEntity(productEntity: product, quanitty: 1);
+  }
 }
